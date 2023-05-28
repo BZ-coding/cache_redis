@@ -17,6 +17,7 @@ class CacheRedis:
         data_redis = self.cache_redis.get(key)
         if data_redis is None:
             data = get_db_func()
+            data = json.dumps(data)
             self.cache_redis.set(key, data)
         else:
             data = json.loads(data_redis)
